@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('game_results_user_id');
             $table->unsignedBigInteger('game_results_guess_id');
             //foreign key relations
-            $table->foreign('game_results_user_id')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('game_results_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('game_results_guess_id')->references('id')->on('game_guesses')->onDelete('cascade');
 
         }); 
