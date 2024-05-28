@@ -5,7 +5,7 @@
         <li> <a href="">Friendslist</a></li>
         <li> <a href="">Previous Games</a></li>
         <li><a href="">Leaderboard</a></li>
-        <li><a href="">profile</a></li>
+        <li><a href="/edit-profile">profile</a></li>
     </ul>
 </header>
 @endsection
