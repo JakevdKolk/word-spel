@@ -1,58 +1,149 @@
-html, body{
+html,
+body {
     margin: 0 !important;
     padding: 0 !important;
     width: 100%;
     height: 100%;
     overflow-y: hidden;
 }
-main{
+
+main {
     height: inherit;
 }
-li{
+
+li {
     list-style: none;
 }
-a{
+
+a {
     text-decoration: none;
     color: black;
 }
-.frontpageButtonsContainerMain{
+
+.frontpageButtonsContainerMain {
     display: flex;
     flex-direction: column;
-    width: inherit;
+    width: 30%;
+    align-items: center;
 }
-.frontpageButtonsContainer{
+
+.frontpageButtonsContainer {
     display: flex;
     justify-content: space-around;
     width: inherit;
 }
-.frontpageContainer{
-    width: inherit;
+
+.frontpageContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     height: inherit;
+    width: inherit;
 }
-.leaderboardContainer{
+
+.leaderboardContainer {
     display: flex;
 }
-.frontpageTitle{
+
+.frontpageTitle {
     font-size: xx-large;
 }
-.frontpageButtonsContainer button{
+
+.frontpageButtonsContainer button {
     background-color: lightblue;
     border: 0;
+    margin-left: 5px;
 }
-.frontpageButtonsContainer button:hover{
+
+.frontpageButtonsContainer button:hover {
     background-color: rgb(200, 228, 238);
     cursor: pointer;
 
 }
+
 /* header */
 
-.headerContainer ul{
+.headerContainer ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     border-bottom: 0.25px solid gray;
+}
+
+/*login/register*/
+
+.inlogContainer {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register_input {
+    border-radius: 6px;
+    font-size: 14px;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    font-weight: 500;
+    line-height: 20px;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    background-color: #FAFBFC;
+
+}
+
+.inlogButton {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.inlogButton:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+.inlogButton:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+.inlogButton:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+.inlogButton:focus {
+    outline: 1px transparent;
+}
+
+.inlogButton:before {
+    display: none;
+}
+
+.inlogButton:-webkit-details-marker {
+    display: none;
 }

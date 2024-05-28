@@ -11,7 +11,7 @@
 
 <body class="flexContainer">
     @yield('header')
-    <main class="mainContainer">
+    <main>
         @yield('content')
     </main>
     @yield('footer')
