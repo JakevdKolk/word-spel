@@ -4,23 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class userController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * get all users based on wincount
+     */
+     public function index(){
+        $wins = User::orderBy('wins', 'desc')->get();        
+        return view('pages.leaderboard', ['wins' => $wins]);
+     }
+    /**
+     * Login account.
      */
     public function login(Request $request)
     {
         $username = $request->input('username');
         $password = $request->input('password');
         $user = User::where('name', $username)->first();
-
         if ($user) {
             // If the user exists, verify the password
             if (Hash::check($password, $user->password)) {
+                Session::put('loggedIn', $username);
                 // Password is correct
                 // Log the user in or perform any other actions here
                 return redirect('/');
@@ -33,7 +41,8 @@ class userController extends Controller
     public function create()
     {
     }
-
+   
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -43,6 +52,7 @@ class userController extends Controller
         $user->name =  $request->input('username');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
+        $user->wins = 0;
         // $menu->foto = $request->input( 'afbeelding' );
         $user->save();
 

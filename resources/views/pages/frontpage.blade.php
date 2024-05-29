@@ -7,7 +7,7 @@
             <div class="frontpageButtonsContainer">
                <a href="log-in"><button>Log in</button></a>
                 <button>Play</button>
-                <button>View the leaderboard</button>
+                <a href="leaderboard"><button>View the leaderboard</button></a>
             </div>
 
         </div>

@@ -41,9 +41,6 @@ a {
     width: inherit;
 }
 
-.leaderboardContainer {
-    display: flex;
-}
 
 .frontpageTitle {
     font-size: xx-large;
@@ -146,4 +143,17 @@ a {
 
 .inlogButton:-webkit-details-marker {
     display: none;
+}
+/*leaderboard*/
+.leaderboardContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.leaderboardRowItem{
+    display: flex;
+}
+.leaderboardRowItem p{
+    margin-left: 5px;
 }
