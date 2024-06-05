@@ -157,3 +157,11 @@ a {
 .leaderboardRowItem p{
     margin-left: 5px;
 }
+.foundUserRow{
+    display: flex;
+    align-items: center;
+}
+.foundUserRow a{
+    text-decoration: underline;
+    margin-left: 10px;
+}

@@ -13,8 +13,9 @@ Route::get('/edit-profile', function () {
 });
 
 //get pages with data
+Route::get('/view_profile', 'App\Http\Controllers\userController@show')->name('user.show');
+Route::get('/searchUser', 'App\Http\Controllers\userController@searchUser')->name('user.searchUser');
 Route::get('/log-out', 'App\Http\Controllers\userController@log_out')->name('user.log_out');
-
 Route::get('/log-in', 'App\Http\Controllers\userController@loginIndex')->name('user.loginIndex');
 Route::get('/leaderboard', 'App\Http\Controllers\userController@index')->name('user.index');
 Route::get('/friendlist', 'App\Http\Controllers\friendController@index')->name('friend.index');

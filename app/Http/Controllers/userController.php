@@ -10,15 +10,18 @@ use Illuminate\Support\Facades\Session;
 class userController extends Controller
 {
 
-    /**
-     * get all users based on wincount
-     */
+    public function searchUser(Request $request)
+    {
+        $username = $request->input('searchUser');
+        $users = User::where('name', 'LIKE', '%' . $username . '%')->get();
+        return view('pages.found_friends', ['users' => $users]);
+    }
     public function index()
     {
         $wins = User::orderBy('wins', 'desc')->get();
         return view('pages.leaderboard', ['wins' => $wins]);
     }
- 
+
     public function loginIndex()
     {
         if (Session::get('loggedIn') === null) {
@@ -27,7 +30,8 @@ class userController extends Controller
         return redirect('/')->with('error', 'User already logged in');
     }
 
-    public function log_out(){
+    public function log_out()
+    {
         Session::put('loggedIn', null);
         return redirect('/');
     }
@@ -76,7 +80,9 @@ class userController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::where('id', $id)->get();
+        return  view('pages.view_user', ['user' => $user]);
+
     }
 
     /**
