@@ -5,21 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+
 class userController extends Controller
 {
 
     /**
      * get all users based on wincount
      */
-     public function index(){
-        $wins = User::orderBy('wins', 'desc')->get();        
+    public function index()
+    {
+        $wins = User::orderBy('wins', 'desc')->get();
         return view('pages.leaderboard', ['wins' => $wins]);
-     }
-    /**
-     * Login account.
-     */
+    }
+ 
+    public function loginIndex()
+    {
+        if (Session::get('loggedIn') === null) {
+            return view('pages.log_in');
+        }
+        return redirect('/')->with('error', 'User already logged in');
+    }
+
+    public function log_out(){
+        Session::put('loggedIn', null);
+        return redirect('/');
+    }
     public function login(Request $request)
     {
         $username = $request->input('username');
@@ -34,15 +45,16 @@ class userController extends Controller
                 return redirect('/');
             }
         }
-        return redirect('/log-in')->with('error', 'Onjuiste gegevens');    }
+        return redirect('/log-in')->with('error', 'Onjuiste gegevens');
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
     }
-   
-    
+
+
     /**
      * Store a newly created resource in storage.
      */
