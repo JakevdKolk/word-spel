@@ -19,4 +19,12 @@ class FriendUser extends Model
     protected $fillable = [
         'friend_user_id',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function friendUser()
+    {
+        return $this->belongsTo(User::class, 'friend_user_id');
+    }
 }

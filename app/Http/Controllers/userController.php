@@ -14,7 +14,7 @@ class userController extends Controller
     {
         $username = $request->input('searchUser');
         $users = User::where('name', 'LIKE', '%' . $username . '%')->get();
-        return view('pages.found_friends', ['users' => $users]);
+        return view('pages.friendlist.found_friends', ['users' => $users]);
     }
     public function index()
     {
@@ -25,7 +25,7 @@ class userController extends Controller
     public function loginIndex()
     {
         if (Session::get('loggedIn') === null) {
-            return view('pages.log_in');
+            return view('pages.login.log_in');
         }
         return redirect('/')->with('error', 'User already logged in');
     }
@@ -43,7 +43,7 @@ class userController extends Controller
         if ($user) {
             // If the user exists, verify the password
             if (Hash::check($password, $user->password)) {
-                Session::put('loggedIn', $username);
+                Session::put('loggedIn', $user);
                 // Password is correct
                 // Log the user in or perform any other actions here
                 return redirect('/');
@@ -81,7 +81,7 @@ class userController extends Controller
     public function show(string $id)
     {
         $user = User::where('id', $id)->get();
-        return  view('pages.view_user', ['user' => $user]);
+        return  view('pages.profile.view_user', ['user' => $user]);
 
     }
 

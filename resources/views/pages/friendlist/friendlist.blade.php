@@ -7,7 +7,11 @@
                 <input type="submit" value="search">
             </form>
             @foreach ($friends as $friend)
-                <p>{{ $friend->friend_user_id }}</p>
-            @endforeach
+                @if ($friend->user_id == session('loggedIn')->id)
+                    <p>{{ $friend->friendUser->name }}</p>
+                @else
+                    <p>{{ $friend->user->name }}</p>
+                @endif
+                @endforeach
         </div>
     @endsection

@@ -3,21 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\FriendUser;
+use App\Models\User;
 
-class friendController extends Controller
+
+
+class profileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        if (!session('loggedIn')) {
-            return redirect()->back()->with('failed not logged in');
-        }
-
-        $friends = FriendUser::where('user_id', session("loggedIn")->id)->orWhere('friend_user_id', session("loggedIn")->id)->orderBy('user_id', 'desc')->get();
-        return view('pages.friendlist.friendlist', ['friends' => $friends]);
+        //
     }
 
     /**
@@ -32,14 +29,13 @@ class friendController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $FriendUser = new FriendUser();
-        $FriendUser->user_id = session("loggedIn")->id;
-        $FriendUser->friend_user_id = $request->input('add_friend');
+    {   
+        $id = session("loggedIn")->id;
+        $user = User::find($id);
+        $avatar = $request->input('submitNewAvater');
+        $user->update($request->all());
 
-        $FriendUser->save();
-
-        return redirect()->back()->with('success', 'Successfully added a friend');
+        
     }
 
     /**

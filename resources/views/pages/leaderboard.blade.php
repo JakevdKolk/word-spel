@@ -4,7 +4,6 @@
     <div class="leaderboardContainer">
         @if (session('loggedIn'))
             <div>
-                {{ session('loggedIn') }}
             </div>
         @else
             <div>not logged in</div>

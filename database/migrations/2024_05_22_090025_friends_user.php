@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('friend_users', function (Blueprint $table) {
             //columns
-            $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('friend_user_id');
             //foreign key relations
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('friend_user_id')->references('id')->on('users')->onDelete('cascade');
 
-        }); 
+            $table->primary(['user_id', 'friend_user_id']);
+        });
     }
 
     /**
