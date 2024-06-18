@@ -29,23 +29,54 @@ class profileController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
-        $id = session("loggedIn")->id;
-        $user = User::find($id);
-        $avatar = $request->input('submitNewAvater');
-        $user->update($request->all());
+    {
+        // Validate the incoming request to ensure an image file is provided
+        $request->validate([
+            'submitNewAvatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        
+        // Retrieve the currently logged-in user's ID from the session
+        $id = session("loggedIn")->id;
+
+        // Find the user by their ID
+        $user = User::find($id);
+
+        // Check if the request has a file for the new avatar
+        if ($request->hasFile('submitNewAvatar')) {
+            // Retrieve the uploaded file
+            $file = $request->file('submitNewAvatar');
+
+            // Get the content of the file
+            $fileContent = file_get_contents($file->getRealPath());
+
+
+            // Update the user's avatar with the new file content
+            $user->avatar = $fileContent;
+            $user->save();
+
+
+            // Redirect to the edit profile page
+            return redirect("/edit-profile");
+        }
+
+        return redirect("/edit-profile")->withErrors(['submitNewAvatar' => 'No file uploaded']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
-    }
+        $userId = $request->session()->get('loggedIn')->id;
+        $user = User::find($userId);
 
+        if ($user && $user->avatar) {
+            return response($user->avatar)->header('Content-Type', 'image/jpeg');
+        } else {
+            // If user or avatar not found, return a default avatar
+            return response('')->header('Content-Type', 'image/jpeg');
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      */
