@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\FriendUser;
+
 
 class userController extends Controller
 {
@@ -14,6 +16,7 @@ class userController extends Controller
     {
         $username = $request->input('searchUser');
         $users = User::where('name', 'LIKE', '%' . $username . '%')->get();
+
         return view('pages.friendlist.found_friends', ['users' => $users]);
     }
     public function index()
@@ -82,7 +85,6 @@ class userController extends Controller
     {
         $user = User::where('id', $id)->get();
         return  view('pages.profile.view_user', ['user' => $user]);
-
     }
 
     /**

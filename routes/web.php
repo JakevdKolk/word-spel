@@ -20,6 +20,7 @@ Route::get('/log-in', 'App\Http\Controllers\userController@loginIndex')->name('u
 Route::get('/leaderboard', 'App\Http\Controllers\userController@index')->name('user.index');
 Route::get('/friendlist', 'App\Http\Controllers\friendController@index')->name('friend.index');
 Route::get('/profile/avatar' ,  'App\Http\Controllers\profileController@show')->name('profile.show');
+Route::get('/profile-view', 'App\Http\Controllers\profileController@index')->name('profile.index');
 //post data
 Route::post('/searchUser', 'App\Http\Controllers\friendController@store')->name('friend.store');
 Route::post('/register', 'App\Http\Controllers\userController@store')->name('user.store');
