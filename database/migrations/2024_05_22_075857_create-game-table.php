@@ -16,8 +16,11 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('game_word_id');
+            $table->unsignedBigInteger('game_user_id');
+
             $table->foreign('game_word_id')->references('id')->on('words')->onDelete('cascade');
-            $table->date('game-date');
+            $table->foreign('game_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('game_date');
             $table->timestamps();
         });
     }

@@ -11,7 +11,6 @@ use App\Models\FriendUser;
 
 class userController extends Controller
 {
-
     public function searchUser(Request $request)
     {
         $username = $request->input('searchUser');
@@ -60,7 +59,6 @@ class userController extends Controller
     public function create()
     {
     }
-
 
     /**
      * Store a newly created resource in storage.

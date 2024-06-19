@@ -5,7 +5,7 @@
         @if ($users)
             @foreach ($users as $user)
                 <div class="foundUserRow">
-                    <a href="/profile-view">
+                    <a href="/profile-view?id={{$user->id}}">
                         <p>{{ $user->name }}</p>
                     </a>
                     <form action="{{ route('friend.store') }}" method="POST">

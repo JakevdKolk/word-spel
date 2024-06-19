@@ -11,7 +11,7 @@
                 @else
                     <a href="log-in"><button>Log in</button></a>
                 @endif
-                <button>Play</button>
+                <a href="game"><button>Play</button></a>
                 <a href="leaderboard"><button>View the leaderboard</button></a>
             </div>
 

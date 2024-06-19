@@ -8,10 +8,10 @@
             </form>
             @foreach ($friends as $friend)
                 @if ($friend->user_id == session('loggedIn')->id)
-                    <a href="/profile-view?id={{$friend->friendUser->id}}">{{ $friend->friendUser->name }}</a>
+                    <a href="/profile-view?id={{ $friend->friendUser->id }}">{{ $friend->friendUser->name }}</a>
                 @else
-                    <a href="/profile-view?id={{$friend->user->id}}">{{ $friend->user->name }}</a>
+                    <a href="/profile-view?id={{ $friend->user->id }}">{{ $friend->user->name }}</a>
                 @endif
-                @endforeach
+            @endforeach
         </div>
     @endsection

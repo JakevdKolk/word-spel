@@ -12,11 +12,16 @@ class profileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $userId = $request->query('id');
+        $user = User::find($userId);
 
-        return view('pages.profile.view_user');
+        if ($user) {
+            return view('pages.profile.view_user', ['user' => $user]);
+        }
+        return redirect()->back()->with('error', 'User not found');
     }
 
     /**

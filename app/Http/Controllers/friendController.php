@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FriendUser;
+use App\Models\User;
 
 class friendController extends Controller
 {
@@ -45,9 +46,9 @@ class friendController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
-        //
+      
     }
 
     /**
