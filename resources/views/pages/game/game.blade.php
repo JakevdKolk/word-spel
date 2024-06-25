@@ -8,6 +8,8 @@
                 <p>Do you want to save your score:
                 <form action="{{ route('game.create') }}" method="post">
                     @csrf
+                    <input type="hidden" name="winner" value="0">
+                    <input type="hidden" name="game_id" value="{{ $game->id }}">
                     <input type="submit" value="save">
                 </form>
                 </p>

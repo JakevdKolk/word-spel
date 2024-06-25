@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\Game;
 
 
 class profileController extends Controller
@@ -17,9 +17,10 @@ class profileController extends Controller
         //
         $userId = $request->query('id');
         $user = User::find($userId);
+        $gameResults = Game::where('game_user_id', $user->id)->get();
 
         if ($user) {
-            return view('pages.profile.view_user', ['user' => $user]);
+            return view('pages.profile.view_user', ['user' => $user, 'games' => $gameResults]);
         }
         return redirect()->back()->with('error', 'User not found');
     }
@@ -108,8 +109,15 @@ class profileController extends Controller
         //
     }
 
-    public function view()
+    public function view(Request $request)
     {
-        return view('pages.profile.edit_profile');
+        $userId = $request->session()->get('loggedIn')->id;
+
+        // Fetch game results for the given user ID
+        $gameResults = Game::where('game_user_id', $userId)->get();
+        // Extract games from game results
+
+
+        return view('pages.profile.edit_profile', ['games' => $gameResults]);
     }
 }

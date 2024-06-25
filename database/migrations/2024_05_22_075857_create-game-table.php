@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('game_word_id');
             $table->unsignedBigInteger('game_user_id');
-
+            $table->boolean('winner');
             $table->foreign('game_word_id')->references('id')->on('words')->onDelete('cascade');
             $table->foreign('game_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('game_date');

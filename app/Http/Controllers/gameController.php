@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use PHPUnit\Framework\Constraint\Count;
 use App\Models\GameResults;
 
+
 class gameController extends Controller
 {
     /**
@@ -55,17 +56,30 @@ class gameController extends Controller
      */
     public function create(Request $request)
     {
-        $game_results = new GameResults();
-        $game = $request->input('game_id');
+        // Retrieve the game_id from the request
         $winner = $request->input('winner');
-        
-        $game_results->game_results_game_id = intval($game);
-        $game_results->winner = $winner;
-        $game_results->save();
+        $gameId = $request->input('game_id');
+        // Find the game in the database using the game_id
+        $dbGame = Game::find($gameId);
+        $user = User::find(Session('loggedIn')->id);
+        if ($winner == "1") {
+            // Ensure that the game was found
+            if ($dbGame) {
+                // Update the winner field to 1
+                $dbGame->winner = 1;
+                $dbGame->save(); // Save the changes to the database
 
+            }
+            if ($user) {
+                $user->wins = $user->wins + 1;
+                $user->save();
+            }
+        }
+        Session::forget('word_id');
+
+        // Redirect to the home page
         return redirect("/");
     }
-
     /**
      * Store a newly created resource in storage.
      */

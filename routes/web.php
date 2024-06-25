@@ -8,11 +8,9 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('pages.login.register');
 });
-Route::get('/edit-profile', function () {
-    return view('pages.profile.edit_profile');
-});
 
 //get pages with data
+Route::get('/edit-profile', 'App\Http\Controllers\profileController@view')->name('profile.view');
 Route::get('/game', 'App\Http\Controllers\gameController@index')->name('game.index');
 Route::get('/view_profile', 'App\Http\Controllers\userController@show')->name('user.show');
 Route::get('/searchUser', 'App\Http\Controllers\userController@searchUser')->name('user.searchUser');

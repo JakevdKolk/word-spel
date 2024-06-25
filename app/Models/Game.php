@@ -17,13 +17,15 @@ class Game extends Model
     }
     public function user()
     {
-        return $this->belongsTo(Word::class, 'game_user_id');
-
+        return $this->belongsTo(User::class, 'game_user_id');
     }
     protected static function booted()
     {
         static::creating(function ($model) {
             $model->game_date = now();
+        });
+        static::creating(function ($model) {
+            $model->winner = 0;
         });
     }
 }
