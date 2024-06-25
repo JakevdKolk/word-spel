@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('game_results', function (Blueprint $table) {
             //columns
             $table->id();
-            $table->unsignedBigInteger('game_results_user_id');
-            $table->unsignedBigInteger('game_results_guess_id');
-            //foreign key relations
-            $table->foreign('game_results_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('game_results_guess_id')->references('id')->on('game_guesses')->onDelete('cascade');
+            $table->unsignedBigInteger('game_results_game_id');
+            $table->boolean('winner');
+            $table->timestamps();
 
-        }); 
+            //foreign key relations
+            $table->foreign('game_results_game_id')->references('id')->on('game')->onDelete('cascade');
+        });
     }
 
     /**

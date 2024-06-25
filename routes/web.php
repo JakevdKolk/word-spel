@@ -24,9 +24,10 @@ Route::get('/profile/avatar',  'App\Http\Controllers\profileController@show')->n
 Route::get('/profile-view', 'App\Http\Controllers\profileController@index')->name('profile.index');
 
 //post data
-Route::post('/game', 'App\Http\Controllers\gameController@store')->name('game.store');
 Route::post('/searchUser', 'App\Http\Controllers\friendController@store')->name('friend.store');
 Route::post('/register', 'App\Http\Controllers\userController@store')->name('user.store');
 Route::post('/log-in', 'App\Http\Controllers\userController@login')->name('user.login');
 Route::post('/view_profile', 'App\Http\Controllers\profileController@store')->name('profile.store');
 Route::post('/edit-profile', 'App\Http\Controllers\profileController@store')->name('profile.store');
+Route::post('/game/store', 'App\Http\Controllers\gameController@store')->name('game.store');
+Route::post('/game/create', 'App\Http\Controllers\gameController@create')->name('game.create');

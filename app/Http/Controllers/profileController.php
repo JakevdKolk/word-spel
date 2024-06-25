@@ -107,4 +107,9 @@ class profileController extends Controller
     {
         //
     }
+
+    public function view()
+    {
+        return view('pages.profile.edit_profile');
+    }
 }

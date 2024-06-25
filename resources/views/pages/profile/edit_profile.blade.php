@@ -12,5 +12,9 @@
                 <input name="submit" type="submit" value="submit">
             </form>
         </section>
+        <section>
+            <h2>view your game results</h2>
+            
+        </section>
     </div>
 @endsection
